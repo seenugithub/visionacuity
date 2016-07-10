@@ -4,8 +4,7 @@
 	<property name="lib.dir" location="lib" />
 	<property name="bin.dir" location="bin" />
 	<property name="build.dir" location="build" />
-	<property name="windows.dir" location="windows" />
-	<property name="unix.dir" location="unix" />
+	<property name="target.dir" location="target" />
 	
 	<target name="clean" description="clean up">
 		   <delete dir="${build.dir}" />
@@ -29,14 +28,10 @@
     <target name="jar" description="Package into JAR" depends="compile">
         <jar destfile="${build.dir}/visionacuityapp.jar" basedir="${bin.dir}" compress="true" />
     	
-    	<copy todir="${unix.dir}">
+    	<copy todir="${target.dir}">
     		<fileset dir="${build.dir}" />
     	 </copy>
-    	
-    	<copy todir="${windows.dir}">
-    		<fileset dir="${build.dir}" />
-    	</copy>
-    	
+    	 	
     	<delete dir="${build.dir}" />
     	
     </target>
