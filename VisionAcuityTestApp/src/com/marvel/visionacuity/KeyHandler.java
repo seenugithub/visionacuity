@@ -272,8 +272,11 @@ public class KeyHandler {
 				if(kprocessor.getCurrFilePrefix().equalsIgnoreCase(KeyProcessor.SETTING_IMG_PREFIX)){
 					storeCurrentMenu();
 					triggerSettingMenu();
-				}else{
+				}else if(kprocessor.getCurrFilePrefix().equalsIgnoreCase(KeyProcessor.MENU_IMG_PREFIX)){
 					kprocessor.showNextImg(curr_dir, FILE_MAX_COUNT, imgObj);
+				}else{
+					logger.debug("Looking for selected image from next main menu");
+					showNextMenuSelectedImg();
 				}
 				storeCurrentMenu();
 				
@@ -283,8 +286,13 @@ public class KeyHandler {
 				if(kprocessor.getCurrFilePrefix().equalsIgnoreCase(KeyProcessor.SETTING_IMG_PREFIX)){
 					storeCurrentMenu();
 					triggerSettingMenu();
-				}else{
+				}
+				else if(kprocessor.getCurrFilePrefix().equalsIgnoreCase(KeyProcessor.MENU_IMG_PREFIX)){
 					kprocessor.showPrevImg(curr_dir, FILE_MAX_COUNT, imgObj);
+				}
+				else{
+					logger.debug("Looking for selected image from previous main menu");
+					showPrevMenuSelectedImg();
 				}
 				storeCurrentMenu();
 				
@@ -295,11 +303,17 @@ public class KeyHandler {
 					if(topno!=-1)
 						menuHandler(topno);
 					storeCurrentMenu();
-				}else if(kprocessor.getCurrFilePrefix().equalsIgnoreCase(KeyProcessor.EDUCHART_IMG_PREFIX)){
+				}
+				/*
+				 //Commented because no more matrix menu for education chart
+				 else if(kprocessor.getCurrFilePrefix().equalsIgnoreCase(KeyProcessor.EDUCHART_IMG_PREFIX)){
 					int topno=getTopEduMenuNo();
 					if(topno!=-1)
 						eduMenuHandler(topno);
 					storeCurrentMenu();
+				}*/ 
+				else  if(kprocessor.getCurrFilePrefix().equalsIgnoreCase(KeyProcessor.SETTING_IMG_PREFIX)){
+					kprocessor.showDownImg(curr_dir, FILE_MAX_COUNT, imgObj); // Setting menu will behave in opposite way because UP key should show previous image instead of next image
 				}else{
 					kprocessor.showUpImg(curr_dir, FILE_MAX_COUNT, imgObj);
 				}
@@ -312,11 +326,17 @@ public class KeyHandler {
 					if(downno!=-1)
 						menuHandler(downno);
 					storeCurrentMenu();
-				}else if(kprocessor.getCurrFilePrefix().equalsIgnoreCase(KeyProcessor.EDUCHART_IMG_PREFIX)){
+				}
+				/*
+				 * //Commented because no more matrix menu for education chart
+				 else if(kprocessor.getCurrFilePrefix().equalsIgnoreCase(KeyProcessor.EDUCHART_IMG_PREFIX)){
 					int downno=getDownEduMenuNo();
 					if(downno!=-1)
 						eduMenuHandler(downno);
 					storeCurrentMenu();
+				}*/
+				else if(kprocessor.getCurrFilePrefix().equalsIgnoreCase(KeyProcessor.SETTING_IMG_PREFIX)){
+					kprocessor.showUpImg(curr_dir, FILE_MAX_COUNT, imgObj); // Setting menu will behave in opposite way because DOWN key should show next image instead of prev image
 				}else{
 					kprocessor.showDownImg(curr_dir, FILE_MAX_COUNT, imgObj);
 				}
@@ -352,7 +372,7 @@ public class KeyHandler {
 				curr_dir=curr_dir.replace("{parent_dir}", parent_dir);
 				curr_dir=curr_dir.replace("{curr_dist}", curr_dist);
 				FILE_MAX_COUNT=Integer.parseInt(props.getProperty("landoltring_max_count"));
-				kprocessor.showFirstLandoltringChart(curr_dir, imgObj);	
+				kprocessor.showLandoltringChart(curr_dir, imgObj);	
 			
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_E_CHART)!=-1){
 				
@@ -362,7 +382,7 @@ public class KeyHandler {
 				curr_dir=curr_dir.replace("{curr_dist}", curr_dist);
 				
 				FILE_MAX_COUNT=Integer.parseInt(props.getProperty("echart_max_count"));
-				kprocessor.showFirstEChart(curr_dir, imgObj);	
+				kprocessor.showEChart(curr_dir, imgObj);	
 				
 			
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_ENGLISH_ALPHA)!=-1){
@@ -373,7 +393,7 @@ public class KeyHandler {
 				curr_dir=curr_dir.replace("{parent_dir}", parent_dir);
 				curr_dir=curr_dir.replace("{curr_dist}", curr_dist);
 				FILE_MAX_COUNT=Integer.parseInt(props.getProperty("english_alphabets_max_count"));
-				kprocessor.showFirstLetter(curr_dir, imgObj);	
+				kprocessor.showLetter(curr_dir, imgObj);	
 			
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_NUMBER_CHART)!=-1){
 				
@@ -382,7 +402,7 @@ public class KeyHandler {
 				curr_dir=curr_dir.replace("{parent_dir}", parent_dir);
 				curr_dir=curr_dir.replace("{curr_dist}", curr_dist);
 				FILE_MAX_COUNT=Integer.parseInt(props.getProperty("numberchart_max_count"));
-				kprocessor.showFirstNumberChart(curr_dir, imgObj);	
+				kprocessor.showNumberChart(curr_dir, imgObj);	
 			
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_PEDIATRIC_CHART)!=-1){
 				
@@ -406,7 +426,7 @@ public class KeyHandler {
 					curr_dir=curr_dir.replace("{curr_dist}", curr_dist);
 					curr_dir=curr_dir.replace("{pref_language1}", bookmarkprops.getProperty("pref_language1"));
 					FILE_MAX_COUNT=Integer.parseInt(props.getProperty("language1_max_count"));
-					kprocessor.showFirstLetter(curr_dir, imgObj);	
+					kprocessor.showLetter(curr_dir, imgObj);	
 			
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_LANGUAGE2)!=-1){
 				
@@ -416,7 +436,7 @@ public class KeyHandler {
 				curr_dir=curr_dir.replace("{curr_dist}", curr_dist);
 				curr_dir=curr_dir.replace("{pref_language2}", bookmarkprops.getProperty("pref_language2"));
 				FILE_MAX_COUNT=Integer.parseInt(props.getProperty("language2_max_count"));
-				kprocessor.showFirstLetter(curr_dir, imgObj);	
+				kprocessor.showLetter(curr_dir, imgObj);	
 			
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_LANGUAGE3)!=-1){
 				
@@ -426,7 +446,7 @@ public class KeyHandler {
 				curr_dir=curr_dir.replace("{curr_dist}", curr_dist);
 				curr_dir=curr_dir.replace("{pref_language3}", bookmarkprops.getProperty("pref_language3"));
 				FILE_MAX_COUNT=Integer.parseInt(props.getProperty("language3_max_count"));
-				kprocessor.showFirstLetter(curr_dir, imgObj);	
+				kprocessor.showLetter(curr_dir, imgObj);	
 			
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_SNELIEN_CHART)!=-1){
 				
@@ -435,14 +455,14 @@ public class KeyHandler {
 				curr_dir=curr_dir.replace("{parent_dir}", parent_dir);
 				curr_dir=curr_dir.replace("{curr_dist}", curr_dist);
 				FILE_MAX_COUNT=Integer.parseInt(props.getProperty("snelienchart_max_count"));
-				kprocessor.showFirstSnelienChart(curr_dir, imgObj);
+				kprocessor.showSnelienChart(curr_dir, imgObj);
 				
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_LOGMAR_CHART)!=-1){
 				
 				logger.debug("logmar chart key pressed");
 				FILE_MAX_COUNT=Integer.parseInt(props.getProperty("logmarchart_max_count"));
 				curr_dir=props.getProperty("logmarchart_dir").replace("{parent_dir}", parent_dir);
-				kprocessor.showFirstLogmarChart(curr_dir, imgObj);
+				kprocessor.showLogmarChart(curr_dir, imgObj);
 				
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_PEDIATRIC_CHART)!=-1){
 				
@@ -557,7 +577,7 @@ public class KeyHandler {
 					curr_dir=curr_dir.replace("{curr_dist}", curr_dist).replace("{curr_lang}", curr_lang);
 				
 					FILE_MAX_COUNT=Integer.parseInt(props.getProperty("letter_max_count"));
-					kprocessor.showFirstLetter(curr_dir, imgObj);	
+					kprocessor.showLetter(curr_dir, imgObj);	
 				}
 		
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_SCREENSAVER)!=-1){
@@ -703,6 +723,46 @@ public class KeyHandler {
 		}else if(setting_no.equalsIgnoreCase("setting_5")){
 			int imgNo=(muteOperation==false?1:2);
 			kprocessor.showFifthSettingSubMenuImage(curr_dir,imgNo, imgObj);
+		}
+	}
+	
+	public void showNextMenuSelectedImg(){
+		int temp_next_menu_no=curr_menu_no+1;
+		String nextMainMenu=KeyProcessor.MENU_IMG_PREFIX.toUpperCase().concat(temp_next_menu_no+"")+"";
+		logger.debug("Tentative Next main menu : "+nextMainMenu);
+		String distBasedMenuList=props.getProperty("DISTANCE_BASED_MENU_LIST");
+		//Check next main menu is based on distance or not
+		if(distBasedMenuList!=null && !distBasedMenuList.isEmpty() && distBasedMenuList.indexOf(nextMainMenu)!=-1){
+			logger.debug("Next main menu is based on distance. proceeding further");
+			logger.debug("Prev image name : "+kprocessor.getCurrImg());
+			kprocessor.setPrevSelectedSubImgNo(kprocessor.getCurrImgNo()); // capturing selected image no of previous main menu
+			kprocessor.setCurrFilePrefix(KeyProcessor.MENU_IMG_PREFIX); // setting main menu reference for navigation
+			kprocessor.setCurrImgNo(temp_next_menu_no); // setting next main menu image number [ 1, 2, etc]
+			kprocessor.setCurrImg(nextMainMenu); // setting next main menu full name [ MENU_1, MENU_2 etc]
+			storeCurrentMenu();
+			triggerCurrentMenu();	
+		}else{
+			logger.debug("Next main menu is not based on distance. so NEXT Key will not function");
+		}
+	}
+	
+	public void showPrevMenuSelectedImg(){
+		int temp_prev_menu_no=curr_menu_no-1;
+		String prevMainMenu=KeyProcessor.MENU_IMG_PREFIX.toUpperCase().concat(temp_prev_menu_no+"")+"";
+		logger.debug("Tentative Prev main menu : "+prevMainMenu);
+		String distBasedMenuList=props.getProperty("DISTANCE_BASED_MENU_LIST");
+		//Check next main menu is based on distance or not
+		if(distBasedMenuList!=null && !distBasedMenuList.isEmpty() && distBasedMenuList.indexOf(prevMainMenu)!=-1){
+			logger.debug("Prev main menu is based on distance. proceeding further");
+			logger.debug("Prev image name : "+kprocessor.getCurrImg());
+			kprocessor.setPrevSelectedSubImgNo(kprocessor.getCurrImgNo()); // capturing selected image no of previous main menu
+			kprocessor.setCurrFilePrefix(KeyProcessor.MENU_IMG_PREFIX); // setting main menu reference for navigation
+			kprocessor.setCurrImgNo(temp_prev_menu_no); // setting prev main menu image number [ 1, 2, etc]
+			kprocessor.setCurrImg(prevMainMenu); // setting prev main menu full name [ MENU_1, MENU_2 etc]
+			storeCurrentMenu();
+			triggerCurrentMenu();	
+		}else{
+			logger.debug("Previous main menu is not based on distance. so PREVIOUS Key will not function");
 		}
 	}
 	

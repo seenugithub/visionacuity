@@ -72,7 +72,7 @@ public class Application {
 		        khandler.menuHandler(); // Displaying first grid image
 		      
 		        // Enable below code to test this project without remote
-		       // Testing.kickOffTesting(khandler);
+		        //Testing.kickOffTesting(khandler);
 		      
 		        // Remote key receiver listener
 		        logger.debug("Initializing SerialConnector...");

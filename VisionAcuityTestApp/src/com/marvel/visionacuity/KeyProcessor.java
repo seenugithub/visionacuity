@@ -13,8 +13,11 @@ public class KeyProcessor {
 	
 	CacheWorker cacheWorker = new CacheWorker();
 	
+	int tempNextImgNo=0;
+	int tempPrevImgNo=0;
 	private String currImg=null;
 	private int currImgNo=0;
+	private int prevSelectedSubImgNo=0;
 	private String currFilePrefix=null;
 	public String STRING_EMPTY="";
 	public int ZERO=0;
@@ -80,7 +83,15 @@ public class KeyProcessor {
 		this.currImgNo = currImgNo;
 	}
 
-	
+
+	public int getPrevSelectedSubImgNo() {
+		return prevSelectedSubImgNo;
+	}
+
+	public void setPrevSelectedSubImgNo(int prevSelectedSubImgNo) {
+		this.prevSelectedSubImgNo = prevSelectedSubImgNo;
+	}
+
 	public String getCurrFilePrefix() {
 		if(currFilePrefix!=null)
 			return currFilePrefix;
@@ -246,29 +257,28 @@ public class KeyProcessor {
 		showImage(curr_dir,imgObj);
 	}
 	
-	public void showFirstLandoltringChart(String curr_dir,ImageDisplay imgObj){
-		
-		setCurrImgNo(ONE);
+	public void showLandoltringChart(String curr_dir,ImageDisplay imgObj){
 		setCurrFilePrefix(LANDOLTRING_IMG_PREFIX);
+		setCurrImgNo(identifyImageNo());
 		showImage(curr_dir,imgObj);
 	}
 	
-	public void showFirstLetter(String curr_dir,ImageDisplay imgObj){
-	    setCurrImgNo(ONE);
+	public void showLetter(String curr_dir,ImageDisplay imgObj){
+	    setCurrImgNo(identifyImageNo());
 		setCurrFilePrefix(LETTER_IMG_PREFIX);
 		showImage(curr_dir,imgObj);
    }
 	
-	public void showFirstSnelienChart(String curr_dir,ImageDisplay imgObj){
+	public void showSnelienChart(String curr_dir,ImageDisplay imgObj){
 		
-		setCurrImgNo(ONE);
+		setCurrImgNo(identifyImageNo());
 		setCurrFilePrefix(SNELIENCHART_IMG_PREFIX);
 		showImage(curr_dir,imgObj);
 	}
 	
-	public void showFirstLogmarChart(String curr_dir,ImageDisplay imgObj){
+	public void showLogmarChart(String curr_dir,ImageDisplay imgObj){
 		
-		setCurrImgNo(ONE);
+		setCurrImgNo(identifyImageNo());
 		setCurrFilePrefix(LOGMARCHART_IMG_PREFIX);
 		showImage(curr_dir,imgObj);
 	}
@@ -322,14 +332,14 @@ public class KeyProcessor {
 		showImage(curr_dir,imgObj);
 	}
    
-   public void showFirstNumberChart(String curr_dir,ImageDisplay imgObj){
-	    setCurrImgNo(ONE);
+   public void showNumberChart(String curr_dir,ImageDisplay imgObj){
+	    setCurrImgNo(identifyImageNo());
 		setCurrFilePrefix(NUMBERCHART_IMG_PREFIX);
 		showImage(curr_dir,imgObj);
   }
    
-   public void showFirstEChart(String curr_dir,ImageDisplay imgObj){
-	    setCurrImgNo(ONE);
+   public void showEChart(String curr_dir,ImageDisplay imgObj){
+	    setCurrImgNo(identifyImageNo());
 		setCurrFilePrefix(ECHART_IMG_PREFIX);
 		showImage(curr_dir,imgObj);
   }
@@ -342,8 +352,9 @@ public class KeyProcessor {
 	}
 	
 	public void showNextImg(String curr_dir,int fileMaxCnt,ImageDisplay imgObj){
-		setCurrImgNo(getCurrImgNo()+1);
-		if(getCurrImgNo()<=fileMaxCnt && getCurrImgNo()<=fileMaxCnt){
+		tempNextImgNo=getCurrImgNo()+1;
+		if(tempNextImgNo>=1 && tempNextImgNo<=fileMaxCnt){
+			setCurrImgNo(tempNextImgNo);
 			showImage(curr_dir,imgObj);
 		}else{
 			setCurrImgNo(ONE);
@@ -352,8 +363,9 @@ public class KeyProcessor {
 	}
 	
 	public void showPrevImg(String curr_dir,int fileMaxCnt,ImageDisplay imgObj){
-		setCurrImgNo(getCurrImgNo()-1);
-		if(getCurrImgNo()>=1 && getCurrImgNo()<=fileMaxCnt){
+		tempPrevImgNo=getCurrImgNo()-1;
+		if(tempPrevImgNo>=1 && tempPrevImgNo<=fileMaxCnt){
+			setCurrImgNo(tempPrevImgNo);
 			showImage(curr_dir,imgObj);
 		}else{
 			setCurrImgNo(fileMaxCnt);
@@ -362,22 +374,24 @@ public class KeyProcessor {
 	}
 	
 	public void showUpImg(String curr_dir,int fileMaxCnt,ImageDisplay imgObj){
-		setCurrImgNo(getCurrImgNo()-1);
-		if(getCurrImgNo()>=1 && getCurrImgNo()<=fileMaxCnt){
+		tempNextImgNo=getCurrImgNo()+1;
+		if(tempNextImgNo>=1 && tempNextImgNo<=fileMaxCnt){
+			setCurrImgNo(tempNextImgNo);
 			showImage(curr_dir,imgObj);
-		}else{
-			setCurrImgNo(fileMaxCnt);
-			showImage(curr_dir,imgObj);
+		}
+		else{
+			logger.debug("You have reached MAXIMUM image limit ["+getCurrImg()+"]. Cann't go up");
 		}
 	}
 	
 	public void showDownImg(String curr_dir,int fileMaxCnt,ImageDisplay imgObj){
-		setCurrImgNo(getCurrImgNo()+1);
-		if(getCurrImgNo()>=1 && getCurrImgNo()<=fileMaxCnt){
+		tempPrevImgNo=getCurrImgNo()-1;
+		if(tempPrevImgNo>=1 && tempPrevImgNo<=fileMaxCnt){
+			setCurrImgNo(tempPrevImgNo);
 			showImage(curr_dir,imgObj);
-		}else{
-			setCurrImgNo(ONE);
-			showImage(curr_dir,imgObj);
+		}
+		else{
+			logger.debug("You have reached MINIMUM image limit ["+getCurrImg()+"]. Cann't go down");
 		}
 	}
 	
@@ -400,5 +414,17 @@ public class KeyProcessor {
 	
 	public void showScreenSaverImage(String dir , ImageDisplay imgObj){
 		imgObj.loadImage(dir.concat(SCREEN_SAVER_IMG_PREFIX).concat(ONE+""));
+	}
+	
+	public int identifyImageNo(){
+		int inum=0;
+		if(getPrevSelectedSubImgNo()!=0){
+			inum=getPrevSelectedSubImgNo();
+			setPrevSelectedSubImgNo(-1);
+	
+		}else{
+			inum=ONE;
+		}
+		return inum;
 	}
 }
