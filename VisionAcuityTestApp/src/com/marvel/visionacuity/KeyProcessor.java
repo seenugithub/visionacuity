@@ -147,28 +147,28 @@ public class KeyProcessor {
 	
 	public void showSecondSettingSubMenuImage(String curr_dir,int imgNo,ImageDisplay imgObj){
 		
-		setCurrImgNo(imgNo);
+		setCurrImgNo(ZERO);
 		setCurrFilePrefix(SETTING_2_SUBMENU_IMG_PREFIX);
 		showImage(curr_dir,imgObj);
 	}
 	
 	public void showThirdSettingSubMenuImage(String curr_dir,int imgNo,ImageDisplay imgObj){
 		
-		setCurrImgNo(imgNo);
+		setCurrImgNo(ZERO);
 		setCurrFilePrefix(SETTING_3_SUBMENU_IMG_PREFIX);
 		showImage(curr_dir,imgObj);
 	}
 	
 	public void showFourthSettingSubMenuImage(String curr_dir,int imgNo,ImageDisplay imgObj){
 		
-		setCurrImgNo(imgNo);
+		setCurrImgNo(ZERO);
 		setCurrFilePrefix(SETTING_4_SUBMENU_IMG_PREFIX);
 		showImage(curr_dir,imgObj);
 	}
 	
 	public void showFifthSettingSubMenuImage(String curr_dir,int imgNo,ImageDisplay imgObj){
 		
-		setCurrImgNo(imgNo);
+		setCurrImgNo(ZERO);
 		setCurrFilePrefix(SETTING_5_SUBMENU_IMG_PREFIX);
 		showImage(curr_dir,imgObj);
 	}
@@ -420,7 +420,7 @@ public class KeyProcessor {
 		int inum=0;
 		if(getPrevSelectedSubImgNo()!=0){
 			inum=getPrevSelectedSubImgNo();
-			setPrevSelectedSubImgNo(-1);
+			setPrevSelectedSubImgNo(0);
 	
 		}else{
 			inum=ONE;

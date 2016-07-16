@@ -11,18 +11,19 @@ public class Testing {
 	public static ArrayList<String> getKeys(){
 		ArrayList<String> arr=new ArrayList<String>();
 		arr.add(RemoteKeypad.KEY_MUTE);
-		arr.add(RemoteKeypad.KEY_EDU_CHART);
+		arr.add(RemoteKeypad.KEY_NEXT);
+		arr.add(RemoteKeypad.KEY_NUMBER_CHART);
 		arr.add(RemoteKeypad.KEY_UP);
 		arr.add(RemoteKeypad.KEY_UP);
-		arr.add(RemoteKeypad.KEY_OKAY);
-		arr.add(RemoteKeypad.KEY_UP);
-		arr.add(RemoteKeypad.KEY_UP);
-		arr.add(RemoteKeypad.KEY_UP);
-		arr.add(RemoteKeypad.KEY_UP);
-		arr.add(RemoteKeypad.KEY_UP);
+		arr.add(RemoteKeypad.KEY_NEXT);
+		
+		//arr.add(RemoteKeypad.KEY_BACK);
 
-		arr.add(RemoteKeypad.KEY_BACK);
-		arr.add(RemoteKeypad.KEY_BACK);
+		//arr.add(RemoteKeypad.KEY_BACK);
+		//arr.add(RemoteKeypad.KEY_BACK);
+		//arr.add(RemoteKeypad.KEY_NEXT);
+		//arr.add(RemoteKeypad.KEY_OKAY);
+		
 		
 
 		//arr.add(RemoteKeypad.KEY_DOWN);

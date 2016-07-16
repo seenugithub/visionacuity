@@ -274,6 +274,8 @@ public class KeyHandler {
 					triggerSettingMenu();
 				}else if(kprocessor.getCurrFilePrefix().equalsIgnoreCase(KeyProcessor.MENU_IMG_PREFIX)){
 					kprocessor.showNextImg(curr_dir, FILE_MAX_COUNT, imgObj);
+				}else if(kprocessor.getCurrFilePrefix().equalsIgnoreCase(KeyProcessor.EDUCHART_IMG_PREFIX)){
+					kprocessor.showNextImg(curr_dir, FILE_MAX_COUNT, imgObj);
 				}else{
 					logger.debug("Looking for selected image from next main menu");
 					showNextMenuSelectedImg();
@@ -290,7 +292,9 @@ public class KeyHandler {
 				else if(kprocessor.getCurrFilePrefix().equalsIgnoreCase(KeyProcessor.MENU_IMG_PREFIX)){
 					kprocessor.showPrevImg(curr_dir, FILE_MAX_COUNT, imgObj);
 				}
-				else{
+				else if(kprocessor.getCurrFilePrefix().equalsIgnoreCase(KeyProcessor.EDUCHART_IMG_PREFIX)){
+					kprocessor.showPrevImg(curr_dir, FILE_MAX_COUNT, imgObj);
+				}else{
 					logger.debug("Looking for selected image from previous main menu");
 					showPrevMenuSelectedImg();
 				}
@@ -314,6 +318,10 @@ public class KeyHandler {
 				}*/ 
 				else  if(kprocessor.getCurrFilePrefix().equalsIgnoreCase(KeyProcessor.SETTING_IMG_PREFIX)){
 					kprocessor.showDownImg(curr_dir, FILE_MAX_COUNT, imgObj); // Setting menu will behave in opposite way because UP key should show previous image instead of next image
+				}else  if(kprocessor.getCurrFilePrefix().equalsIgnoreCase(KeyProcessor.SETTING_1_SUBMENU_IMG_PREFIX)
+						|| kprocessor.getCurrFilePrefix().equalsIgnoreCase(KeyProcessor.SETTING_2_SUBMENU_IMG_PREFIX)
+						|| kprocessor.getCurrFilePrefix().equalsIgnoreCase(KeyProcessor.SETTING_3_SUBMENU_IMG_PREFIX)){
+						kprocessor.showDownImg(curr_dir, FILE_MAX_COUNT, imgObj); // Setting menu will behave in opposite way because UP key should show previous image instead of next image
 				}else{
 					kprocessor.showUpImg(curr_dir, FILE_MAX_COUNT, imgObj);
 				}
@@ -337,6 +345,10 @@ public class KeyHandler {
 				}*/
 				else if(kprocessor.getCurrFilePrefix().equalsIgnoreCase(KeyProcessor.SETTING_IMG_PREFIX)){
 					kprocessor.showUpImg(curr_dir, FILE_MAX_COUNT, imgObj); // Setting menu will behave in opposite way because DOWN key should show next image instead of prev image
+				}else  if(kprocessor.getCurrFilePrefix().equalsIgnoreCase(KeyProcessor.SETTING_1_SUBMENU_IMG_PREFIX)
+						|| kprocessor.getCurrFilePrefix().equalsIgnoreCase(KeyProcessor.SETTING_2_SUBMENU_IMG_PREFIX)
+						|| kprocessor.getCurrFilePrefix().equalsIgnoreCase(KeyProcessor.SETTING_3_SUBMENU_IMG_PREFIX)){
+					kprocessor.showUpImg(curr_dir, FILE_MAX_COUNT, imgObj); // Setting menu will behave in opposite way because UP key should show previous image instead of next image
 				}else{
 					kprocessor.showDownImg(curr_dir, FILE_MAX_COUNT, imgObj);
 				}
