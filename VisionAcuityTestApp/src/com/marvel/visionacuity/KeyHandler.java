@@ -356,6 +356,7 @@ public class KeyHandler {
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_CARTOON_INFO)!=-1){
 				
 				logger.debug("cartoon key pressed");
+				storeCurrentMenu("KEY_CARTOON_INFO");
 				String cartoon_dir=props.getProperty("cartoon_dir");
 				FILE_MAX_COUNT=Integer.parseInt(props.getProperty("cartoon_max_count"));
 				curr_dir=cartoon_dir.replace("{parent_dir}", parent_dir);
@@ -365,6 +366,7 @@ public class KeyHandler {
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_ANIMAL_INFO)!=-1){
 				
 				logger.debug("animal key pressed");
+				storeCurrentMenu("KEY_ANIMAL_INFO");
 				String animal_dir=props.getProperty("animal_dir");
 				FILE_MAX_COUNT=Integer.parseInt(props.getProperty("animal_max_count"));
 				curr_dir=animal_dir.replace("{parent_dir}", parent_dir);
@@ -380,6 +382,7 @@ public class KeyHandler {
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_LANDOLTRING_CHART)!=-1){
 				
 				logger.debug("landolt ring chart key pressed");
+				storeCurrentMenu("KEY_LANDOLTRING_CHART");
 				curr_dir=props.getProperty("landoltring_dir").replace("{distance_dir}", props.getProperty("distance_dir"));
 				curr_dir=curr_dir.replace("{parent_dir}", parent_dir);
 				curr_dir=curr_dir.replace("{curr_dist}", curr_dist);
@@ -389,6 +392,7 @@ public class KeyHandler {
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_E_CHART)!=-1){
 				
 				logger.debug("E chart key pressed");
+				storeCurrentMenu("KEY_E_CHART");
 				curr_dir=props.getProperty("echart_dir").replace("{distance_dir}", props.getProperty("distance_dir"));
 				curr_dir=curr_dir.replace("{parent_dir}", parent_dir);
 				curr_dir=curr_dir.replace("{curr_dist}", curr_dist);
@@ -400,7 +404,7 @@ public class KeyHandler {
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_ENGLISH_ALPHA)!=-1){
 				
 				logger.debug("english alphabets key pressed");
-				
+				storeCurrentMenu("KEY_ENGLISH_ALPHA");
 				curr_dir=props.getProperty("english_alphabets_dir").replace("{distance_dir}", props.getProperty("distance_dir"));
 				curr_dir=curr_dir.replace("{parent_dir}", parent_dir);
 				curr_dir=curr_dir.replace("{curr_dist}", curr_dist);
@@ -409,7 +413,8 @@ public class KeyHandler {
 			
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_NUMBER_CHART)!=-1){
 				
-				logger.debug("number chart key pressed");
+				logger.debug("number chart key pressed :"+curr_dist);
+				storeCurrentMenu("KEY_NUMBER_CHART");
 				curr_dir=props.getProperty("numberchart_dir").replace("{distance_dir}", props.getProperty("distance_dir"));
 				curr_dir=curr_dir.replace("{parent_dir}", parent_dir);
 				curr_dir=curr_dir.replace("{curr_dist}", curr_dist);
@@ -419,12 +424,14 @@ public class KeyHandler {
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_PEDIATRIC_CHART)!=-1){
 				
 				logger.debug("pediatric chart key pressed");
+				storeCurrentMenu("KEY_PEDIATRIC_CHART");
 				FILE_MAX_COUNT=Integer.parseInt(props.getProperty("pediatricchart_max_count"));
 				curr_dir=props.getProperty("pediatricchart_dir").replace("{parent_dir}", parent_dir);
 				kprocessor.showFirstPediatricChart(curr_dir, imgObj);
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_DOT)!=-1){
 					
 					logger.debug("dot chart new key pressed");
+					storeCurrentMenu("KEY_DOT");
 					FILE_MAX_COUNT=Integer.parseInt(props.getProperty("dot_max_count"));
 					curr_dir=props.getProperty("dot_dir").replace("{parent_dir}", parent_dir);
 					kprocessor.showFirstDotNew(curr_dir, imgObj);
@@ -433,6 +440,7 @@ public class KeyHandler {
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_LANGUAGE1)!=-1){
 					
 					logger.debug("prefered language 1 key pressed");
+					storeCurrentMenu("KEY_LANGUAGE1");
 					curr_dir=props.getProperty("language1_dir").replace("{distance_dir}", props.getProperty("distance_dir"));
 					curr_dir=curr_dir.replace("{parent_dir}", parent_dir);
 					curr_dir=curr_dir.replace("{curr_dist}", curr_dist);
@@ -443,6 +451,7 @@ public class KeyHandler {
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_LANGUAGE2)!=-1){
 				
 				logger.debug("prefered language 2 key pressed");
+				storeCurrentMenu("KEY_LANGUAGE2");
 				curr_dir=props.getProperty("language2_dir").replace("{distance_dir}", props.getProperty("distance_dir"));
 				curr_dir=curr_dir.replace("{parent_dir}", parent_dir);
 				curr_dir=curr_dir.replace("{curr_dist}", curr_dist);
@@ -453,6 +462,7 @@ public class KeyHandler {
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_LANGUAGE3)!=-1){
 				
 				logger.debug("prefered language 3 key pressed");
+				storeCurrentMenu("KEY_LANGUAGE3");
 				curr_dir=props.getProperty("language3_dir").replace("{distance_dir}", props.getProperty("distance_dir"));
 				curr_dir=curr_dir.replace("{parent_dir}", parent_dir);
 				curr_dir=curr_dir.replace("{curr_dist}", curr_dist);
@@ -463,6 +473,7 @@ public class KeyHandler {
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_SNELIEN_CHART)!=-1){
 				
 				logger.debug("snelien chart key pressed");
+				storeCurrentMenu("KEY_SNELIEN_CHART");
 				curr_dir=props.getProperty("snelienchart_dir").replace("{distance_dir}", props.getProperty("distance_dir"));
 				curr_dir=curr_dir.replace("{parent_dir}", parent_dir);
 				curr_dir=curr_dir.replace("{curr_dist}", curr_dist);
@@ -472,6 +483,7 @@ public class KeyHandler {
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_LOGMAR_CHART)!=-1){
 				
 				logger.debug("logmar chart key pressed");
+				storeCurrentMenu("KEY_LOGMAR_CHART");
 				FILE_MAX_COUNT=Integer.parseInt(props.getProperty("logmarchart_max_count"));
 				curr_dir=props.getProperty("logmarchart_dir").replace("{parent_dir}", parent_dir);
 				kprocessor.showLogmarChart(curr_dir, imgObj);
@@ -479,15 +491,18 @@ public class KeyHandler {
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_PEDIATRIC_CHART)!=-1){
 				
 				logger.debug("pediatric chart new menu key pressed");
+				storeCurrentMenu("KEY_PEDIATRIC_CHART");
 				pediatricMenuHandler();
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_SETTING)!=-1){
 				
 				logger.debug("setting menu key pressed");
+				storeCurrentMenu("KEY_SETTING");
 				settingMenuHandler();
 					
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_CONTRAST_CHART)!=-1){
 				
 				logger.debug("contrast chart key pressed");
+				storeCurrentMenu("KEY_CONTRAST_CHART");
 				FILE_MAX_COUNT=Integer.parseInt(props.getProperty("contrastchart_max_count"));
 				curr_dir=props.getProperty("contrastchart_dir").replace("{parent_dir}", parent_dir);
 				kprocessor.showFirstContrastChart(curr_dir, imgObj);
@@ -495,6 +510,7 @@ public class KeyHandler {
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_ASTIG_CHART)!=-1){
 				
 				logger.debug("astig chart key pressed");
+				storeCurrentMenu("KEY_ASTIG_CHART");
 				FILE_MAX_COUNT=Integer.parseInt(props.getProperty("astigfanchart_max_count"));
 				curr_dir=props.getProperty("astigfanchart_dir").replace("{parent_dir}", parent_dir);
 				kprocessor.showFirstAstigFanChart(curr_dir, imgObj);
@@ -502,7 +518,7 @@ public class KeyHandler {
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_ISHARA)!=-1){
 				
 				logger.debug("ishara key pressed");
-				
+				storeCurrentMenu("KEY_ISHARA");
 				FILE_MAX_COUNT=Integer.parseInt(props.getProperty("ishara_max_count"));
 				//curr_dir=props.getProperty("ishara_dir").replace("{parent_dir}", parent_dir);
 				curr_dir=props.getProperty("ishara_dir").replace("{distance_dir}", props.getProperty("distance_dir"));
@@ -514,11 +530,13 @@ public class KeyHandler {
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_EDU_CHART)!=-1){
 				
 				logger.debug("educational chart key pressed");
+				storeCurrentMenu("KEY_EDU_CHART");
 				eduMenuHandler();	
 			
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_VERTICAL)!=-1){
 				
 				logger.debug("vertical key pressed");
+				storeCurrentMenu("KEY_VERTICAL");
 				FILE_MAX_COUNT=Integer.parseInt(props.getProperty("vertical_max_count"));
 				curr_dir=props.getProperty("vertical_dir").replace("{parent_dir}", parent_dir);
 				kprocessor.showFirstVertical(curr_dir, imgObj);
@@ -526,6 +544,7 @@ public class KeyHandler {
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_MADDOX_CHART)!=-1){
 				
 				logger.debug("maddox chart key pressed");
+				storeCurrentMenu("KEY_MADDOX_CHART");
 				FILE_MAX_COUNT=Integer.parseInt(props.getProperty("maddox_max_count"));
 				curr_dir=props.getProperty("maddox_dir").replace("{parent_dir}", parent_dir);
 				kprocessor.showFirstMaddoxChart(curr_dir, imgObj);
@@ -533,6 +552,7 @@ public class KeyHandler {
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_RG_CHART)!=-1){
 				
 				logger.debug("rg chart key pressed");
+				storeCurrentMenu("KEY_RG_CHART");
 				curr_dir=props.getProperty("rgchart_dir").replace("{distance_dir}", props.getProperty("distance_dir"));
 				curr_dir=curr_dir.replace("{parent_dir}", parent_dir);
 				curr_dir=curr_dir.replace("{curr_dist}", curr_dist);
@@ -542,6 +562,7 @@ public class KeyHandler {
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_CROSS_CYLINDER_CHART)!=-1){
 				
 				logger.debug("cross cylinder chart key pressed");
+				storeCurrentMenu("KEY_CROSS_CYLINDER_CHART");
 				FILE_MAX_COUNT=Integer.parseInt(props.getProperty("crosscylinderchart_max_count"));
 				curr_dir=props.getProperty("crosscylinderchart_dir").replace("{parent_dir}", parent_dir);
 				kprocessor.showFirstCrossCylinderChart(curr_dir, imgObj);
@@ -564,6 +585,7 @@ public class KeyHandler {
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_PRODUCT_INFO)!=-1){
 				
 				logger.debug("product key pressed");
+				storeCurrentMenu("KEY_PRODUCT_INFO");
 				String product_dir=props.getProperty("product_dir");
 				FILE_MAX_COUNT=Integer.parseInt(props.getProperty("product_max_count"));
 				curr_dir=product_dir.replace("{parent_dir}", parent_dir);
@@ -572,6 +594,7 @@ public class KeyHandler {
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_ADVERTISEMENT)!=-1){
 				
 				logger.debug("advertisement key pressed");
+				storeCurrentMenu("KEY_ADVERTISEMENT");
 				String advertisement_dir=props.getProperty("advertisement_dir");
 				FILE_MAX_COUNT=Integer.parseInt(props.getProperty("advertisement_max_count"));
 				curr_dir=advertisement_dir.replace("{parent_dir}", parent_dir);
@@ -594,6 +617,7 @@ public class KeyHandler {
 		
 			}else if(inputkey.indexOf(RemoteKeypad.KEY_SCREENSAVER)!=-1){
 				logger.debug("Screen saver key is pressed");
+				storeCurrentMenu("KEY_SCREENSAVER");
 				if(isScreenSaverTurnedOn){
 					isScreenSaverTurnedOn=false;
 					logger.debug("Screen saver disabled . showing actual image");
@@ -639,6 +663,19 @@ public class KeyHandler {
 			return (curr_menu_no+MENU_COLUMN_COUNT);
 	}
 	
+	//--------------------------------------------------------------------------------------------------
+	
+	public void storeCurrentMenu(String chartName){
+		logger.debug("Chart name of current menu : "+chartName);
+		int temp_menu_no=RemoteKeypad.getMenuNumByChartName(chartName);
+		logger.debug("temp_menu_no:"+temp_menu_no);
+		if(temp_menu_no!=-1){
+			curr_menu_no=temp_menu_no;
+			logger.debug("Main menu no is changed to "+curr_menu_no);
+		}else
+			logger.debug("Main menu no did not updated");
+		
+	}
 	//--------------------------------------------------------------------------------------------------
 	
 	public void storeCurrentMenu(){

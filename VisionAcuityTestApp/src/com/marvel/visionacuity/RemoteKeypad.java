@@ -1,6 +1,7 @@
 package com.marvel.visionacuity;
 
 import java.util.Properties;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 
@@ -52,6 +53,7 @@ public class RemoteKeypad {
 	public static  String KEY_PERIPHERAL_CHART=null;
 	public static  String KEY_SCREENSAVER=null;
 	
+	public static Properties menuprops = new Properties();
 	
 	public static void loadKeys(Properties props){
 		
@@ -98,6 +100,27 @@ public class RemoteKeypad {
 		KEY_PERIPHERAL_CHART = props.getProperty("KEY_PERIPHERAL_CHART").trim();
 		KEY_SCREENSAVER = props.getProperty("KEY_SCREENSAVER").trim();
 		
+		loadMenuNumMappingsForChart(props);
+		
 	}
 	
+	public static void loadMenuNumMappingsForChart(Properties prop){
+		  
+		  Set<String> keys=prop.stringPropertyNames();
+		  for(String key : keys){
+		   if(key!=null && (key.startsWith("MENU_"))){
+			   menuprops.setProperty(prop.get(key).toString(), key);
+		   }
+		   
+		  }
+		  
+	}
+	
+	public static int getMenuNumByChartName(String chartName){
+		  String menuName=(String)menuprops.get(chartName);
+		  if(null!=menuName && !menuName.isEmpty()){
+		   return Integer.parseInt(menuName.split("_")[1]);
+		  }
+		  return 1;
+	}
 }
