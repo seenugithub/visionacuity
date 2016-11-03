@@ -1,0 +1,4 @@
+sudo su
+cd /home/ubuntu
+chmod 777 /home/ubuntu/install_visionacuity_software_v2.sh
+./install_visionacuity_software_v2.sh
