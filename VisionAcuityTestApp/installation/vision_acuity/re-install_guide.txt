@@ -1,0 +1,13 @@
+sudo rm -r /home/pi/vision_acuity
+sudo rm -r /usr/bin/runvisionacuityapp.sh
+nano /home/pi/.config/lxsession/LXDE-pi/autostart
+sudo rm -r /opt/jdk1.8.0_06
+
+-----------manual steps------------
+remove @runvisionacuityapp.sh
+click CTRL+X
+type Y and enter
+-----------------------
+
+then follow install_guide.txt for installation
+

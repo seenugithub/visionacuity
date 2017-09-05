@@ -1,0 +1,4 @@
+cd /home/pi/vision_acuity
+chmod 777 *
+./install_visionacuity_software_v3.sh
+sudo reboot
