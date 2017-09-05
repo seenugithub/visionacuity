@@ -2,7 +2,7 @@
 
 # Log Location on Server.
 PROJECT_LOCATION=/home/pi/vision_acuity
-exec > >(tee -i $PROJECT_LOCATION/visionacuity_install.log)
+exec > >(tee -i $PROJECT_LOCATION/logs/visionacuity_install.log)
 exec 2>&1
 
 echo "Project Location will be: [ $PROJECT_LOCATION ]"
